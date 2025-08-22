@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+  <meta charset="UTF-8" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+  <title>Magic Connect</title>
+
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+
+
+  <style>
+
+
+
+    body {
+
+
+
+      margin: 0;
+
+
+
+      background-color: #000;
+
+
+
+      font-family: 'Cairo', sans-serif;
+
+
+
+      color: white;
+
+
+
+    }
+
+
+
+
+
+
+
+    /* Header */
+
+
+
+    header {
+
+
+
+      background: linear-gradient(135deg, #222, #444, #222);
+
+
+
+      padding: 10px 16px;
+
+
+
+      display: grid;
+
+
+
+      grid-template-columns: 1fr auto 1fr;
+
+
+
+      align-items: center;
+
+
+
+      position: sticky;
+
+
+
+      top: 0;
+
+
+
+      z-index: 1000;
+
+
+
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+
+
+      font-family: 'Montserrat', sans-serif;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .header-left {
+
+
+
+      justify-self: start;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .header-center {
+
+
+
+      justify-self: center;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .header-right {
+
+
+
+      justify-self: end;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .logo-text {
+
+
+
+      font-weight: 700;
+
+
+
+      font-size: 1.2rem;
+
+
+
+      color: var(--light);
+
+
+
+      font-family: 'Montserrat', sans-serif;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .header-btn {
+
+
+
+      background: none;
+
+
+
+      border: none;
+
+
+
+      color: var(--light);
+
+
+
+      font-size: 1.2rem;
+
+
+
+      cursor: pointer;
+
+
+
+      transition: all 0.3s ease;
+
+
+
+      width: 36px;
+
+
+
+      height: 36px;
+
+
+
+      border-radius: 50%;
+
+
+
+      display: flex;
+
+
+
+      align-items: center;
+
+
+
+      justify-content: center;
+
+
+
+      background-color: rgba(255, 255, 255, 0.15);
+
+
+
+    }
+
+
+
+    
+
+
+
+    .header-btn:hover {
+
+
+
+      background-color: rgba(255, 255, 255, 0.15);
+
+
+
+    }
+
+
+
+    
+
+
+
+    .grid-container {
+
+
+
+      display: grid;
+
+
+
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+
+
+      gap: 8px;
+
+
+
+      padding: 10px 8px;
+
+
+
+      overflow-y: auto;
+
+
+
+      margin-top: 0px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .channel-box {
+
+
+
+      background: linear-gradient(135deg, #222, #444, #222);
+
+
+
+      border-radius: 12px;
+
+
+
+      text-align: center;
+
+
+
+      height: 125px;
+
+
+
+      border: 1px solid #555;
+
+
+
+      display: flex;
+
+
+
+      flex-direction: column;
+
+
+
+      align-items: center;
+
+
+
+      justify-content: center;
+
+
+
+      transition: 0.3s;
+
+
+
+    }
+
+
+
+
+
+
+
+    .channel-box img {
+
+
+
+      width: 90px;
+
+
+
+      height: 90px;
+
+
+
+      object-fit: contain;
+
+
+
+      border-radius: 10px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .channel-title {
+
+
+
+      font-size: 13px;
+
+
+
+      color: #fff;
+
+
+
+    }
+
+
+
+
+
+
+
+    @media (max-width: 600px) {
+
+
+
+      .grid-container {
+
+
+
+        grid-template-columns: repeat(3, 1fr);
+
+
+
+        gap: 8px;
+
+
+
+        padding: 10px 8px;
+
+
+
+      }
+
+
+
+    }
+
+
+
+    
+
+
+
+    a:focus .channel-box, a:focus-visible .channel-box, a.initial-focus .channel-box {
+
+
+
+      outline: 2px solid #999;
+
+
+
+      background: linear-gradient(135deg, #222, #444, #222);
+
+
+
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+
+
+
+    }
+
+
+
+
+
+
+
+    .channel-box:hover {
+
+
+
+      outline: 2px solid #999;
+
+
+
+      background: linear-gradient(135deg, #222, #444, #222);
+
+
+
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+
+
+
+    }
+
+
+
+    
+
+
+
+    @keyframes spin {
+
+
+
+      from { transform: rotate(0deg); }
+
+
+
+      to { transform: rotate(360deg); }
+
+
+
+    }
+
+
+
+
+
+
+
+    .rotate {
+
+
+
+      animation: spin 0.6s linear;
+
+
+
+    }
+
+
+
+
+
+
+
+    .channel-box {
+
+
+
+      animation: fadeInUp 0.4s ease;
+
+
+
+    }
+
+
+
+
+
+
+
+    @keyframes fadeInUp {
+
+
+
+      from { opacity: 0; transform: translateY(20px); }
+
+
+
+      to { opacity: 1; transform: translateY(0); }
+
+
+
+    }
+
+
+
+
+
+
+
+    a:focus {
+
+
+
+      outline: none !important;
+
+
+
+    }
+
+
+
+    
+
+
+
+    .channel-box:focus-within {
+
+
+
+      outline: 3px solid #0047ab;
+
+
+
+      background: linear-gradient(135deg, #222, #444, #222);
+
+
+
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+
+
+
+    }
+
+
+
+    
+
+
+
+    /* إضافة لضمان ظهور التركيز */
+
+
+
+    a:focus-visible {
+
+
+
+      outline: none;
+
+
+
+    }
+
+
+
+  </style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+
+
+
+  <header>
+
+
+
+    <div class="header-left">
+
+
+
+      <button class="header-btn" id="backBtn">
+
+
+
+        <i class="fas fa-arrow-left"></i>
+
+
+
+      </button>
+
+
+
+    </div>
+
+
+
+    <div class="header-center">
+
+
+
+      <div class="logo-text">Magic Connect</div>
+
+
+
+    </div>
+
+
+
+    <div class="header-right">
+
+
+
+      <button class="header-btn" id="refreshBtn">
+
+
+
+        <i class="fas fa-sync-alt"></i>
+
+
+
+      </button>
+
+
+
+    </div>
+
+
+
+  </header>
+
+
+
+  
+
+
+
+
+
+
+
+  <div class="grid-container">
+
+
+
+    <!-- بطاقات القنوات مع روابط -->
+
+
+
+   
+
+
+
+    
+
+
+
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTY3IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJkZTJlODllNmU3ZmQzZmQ3YjU2NGExYWU0ZDAxOTk2ODo1NDNiMzk1ODNmZWE1NGM3MGZiNmU5MTg2ZGE5MzBjYSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0" id="firstCard">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/MOVIES1_PREMIERE_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN MOVIES 1</div>
+      </div>
+    </a>
+
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTY2IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIwMTFiYWVkYmExYjUzMGQ5OTg1NGVkNjM4MTMwZDAxYzoxMTBhYjFlYjdmOTI3NTlhNDg2NTY4YWFiYjBkMDc3NyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/MOVIES2_ACTION_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN MOVIES 2</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTY1IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiI3NDkwNzJmN2Y5NzgzZDc2Yjc3ZmQ3ZDhmNzk0MGNjYjo4YTFkYzJkODM2ODkyZWY1OTAzYTlhYWNmMmQ2OGVkZiIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/MOVIES3_DRAMA_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN MOVIES 3</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTY2IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIwMTFiYWVkYmExYjUzMGQ5OTg1NGVkNjM4MTMwZDAxYzoxMTBhYjFlYjdmOTI3NTlhNDg2NTY4YWFiYjBkMDc3NyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/MOVIES4_FAMILY_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN MOVIES 4</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTc1IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJlOTk5MTQzZjg1OTQzZDNkYmYwY2JhZWI1NjI4NTA4NTo3ODFlNjkxODhiMmFkMzA1ODZkNTE4OGRiMWVhM2Q5MSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/SERIES1_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN SERIES 1</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMTkxIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiI0MGQ3ZGI5NjRjMTYzYzZlOGIzZjQ5NzI5NTM2YWVkNTo4M2Q0OTU2Y2Q5MDQ0NzMyMGQ4YTYzZjJiOTE1Mjg3ZSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2015/06/SERIES2_DIGITAL_Mono.png" />
+        <div class="channel-title">beIN SERIES 2</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjE2IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJhM2FiY2ZmZThmOWEzMTAzYmI5MWI3ODc5YjMxOTY3ZDoxNzkxZmM5YjZhYWY5MGUxMzRjNTE1YTUxOTUwNzI1ZSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552342600411.png" />
+        <div class="channel-title">beIN DRAMA</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9GTUFcL0ZNQS5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiMjMwYWY5M2ZjNjFjMGMxNzAwNjdjOWQxYjY1Mzg0MDI6NDlhOWJmMGNmYmExY2I0ZTUyZGUzZDQ1OGY2ZmIzYTIiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552428355521.png" />
+        <div class="channel-title">STAR ACTION</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9TVE1cL1NUTS5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiNGI3YTY2MmQ3MTMyNjc5NjMwZjNhM2YxODYyYTg1OWM6MDY1MWJjMzdlNzA1MzQ5YTI4NDgyNzhhZTNhZDdiZjQiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552428363682.png" />
+        <div class="channel-title">STAR MOVIES</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL3VzZWxlY3Rvci5jZG4uaW50aWdyYWwtb3R0Lm5ldFwvU1RXXC9TVFcuaXNtbFwvbWFuaWZlc3QubXBkIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIyIiwiZHJtX2tleSI6IjE5Y2Y0OWI1OWQ2NjJiYWYwMzU5NjgyYWE1MDM3NDlmOmFmNTczNTU2ZDMzZWYyZjA5NGI5OGM3ZDIyZTlmZmNlIiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552443591871.png" />
+        <div class="channel-title">STAR WORLD</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMzU1IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIzNGY5ODc1NGE3NjMzZDBmYmZhNzYxN2Y0NGI0ZmRiODplNzQwYjVkYmVmNDI1NTM4MDllMTBjMGI0ZGE5N2EzYyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552454937141.png" />
+        <div class="channel-title">GOURMET</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9GQVRcL0ZBVC5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiMjgwOWE1MDJlMGZmMjNmMzIzZmY3NWZjZDZkZDA0YWU6NTk1ODg0NTJhYTMyZTM2MTZhMDNlMzJhZGRjZGJjNGEiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552454945952.png" />
+        <div class="channel-title">FATAFEAT</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9GTkhcL0ZOSC5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiNzgxYzgyYTcxYjJiYzVhMWNhMGE1M2Q5Nzk0MGJhYjE6MzI2OWNhZTg3NmRkZmIzMDQ0MDc2MGUwMjM5Y2M5MjMiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://www.bein.com/ar/wp-content/uploads/sites/4/2020/06/food-network-logo-2018-1.png" />
+        <div class="channel-title">FOOD</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2V2LXRjbi1keGItY2RuLmF3cy5wbGF5Y28uY29tXC9saXZlXC9lZHNcL0NOTl9JbnRlcm5hdGlvbmFsX0hEXC9EQVNIXC9DTk5fSW50ZXJuYXRpb25hbF9IRC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiYTI0NTdiNWJjZjM4Njc4OTA2MjkxYzQxMzM3NWY5MTg6ZGM0ZDkyZmM0YTkzZDAzMTgzNWQ5MDMyOTBhNmRmMDAiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552637083911.png" />
+        <div class="channel-title">CNN</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjIwIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJmYTQzMzNhODhjYTUzNTE4YTAzYzc1YjlhZjJjOWVmNzoxMDVjOTc1MzdlMmY4YmI5YTg4OTY2ZWNiMDc0MjY5MiIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552659131611.png" />
+        <div class="channel-title">BBC EARTH</div>
+      </div>
+    </a>
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9OR09cL05HTy5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiMWJhOTRiOTNiMzlhYjgwOWI1ODcyMzdkN2I2MGEwNDk6ZTBmOTRkYmZiZjllNmU0NWM5NTY3YTdiNTBlYjYxMmMiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552682712071.png" />
+        <div class="channel-title">NAT GEO</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL3VzZWxlY3Rvci5jZG4uaW50aWdyYWwtb3R0Lm5ldFwvTkhEXC9OSEQuaXNtbFwvbWFuaWZlc3QubXBkIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIyIiwiZHJtX2tleSI6IjI3NmU1NmJjMTQwOTVmMzI3YmJmMGM5MzZlYjdiMzhjOjYzMTI3ZWFkZGIxOGM1OTZkYjA1NjU3NDI0ODQ5NTE5Iiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/1755527266051.png" />
+        <div class="channel-title">NAT GEO WILD</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL3VzZWxlY3Rvci5jZG4uaW50aWdyYWwtb3R0Lm5ldFwvRFNDXC9EU0MuaXNtbFwvbWFuaWZlc3QubXBkIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIyIiwiZHJtX2tleSI6IjFlZWNkNTQ3ZWRlOTk1NzhiZGVmNjBhZjMxOTU5MjlkOmY2OTA3ZDY1Yjg0MDUwOTdkNDc3ZTBlMGI2OTAwN2YyIiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552758564781.png" />
+        <div class="channel-title">DISCOVERY</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2FrbS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9IR1RWXC9IR1RWLmlzbWxcL21hbmlmZXN0Lm1wZCIsImNvb2tpZXMiOiIiLCJ1c2VyQWdlbnQiOiIiLCJyZWZlcmVyIjoiIiwicGxheWVyIjoiMiIsImRybV9rZXkiOiI5NjkyMDIyZjYwOWQ4YjhmYTI1MjUwNDhhYWVkMjZjMzo0MmY0MTM3YjBhMGYzZWU5ZTUyYWVkZGI4YTk1NDRlMSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552771505991.png" />
+        <div class="channel-title">HGTV</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiLYs9mK2LHZgdixIDEiLCJ1cmxfY2hhbm5lbCI6Imh0dHBzOi8vYWtvbW92LmNvbS9ha29fYWRtaW4vY29kL2NoYW5uZWwucGhwP2lkPTUwMDk1ODMiLCJ1c2VyQWdlbnQiOiIiLCJyZWZlcmVyIjoiIiwicGxheWVyIjoiMTIiLCJjb29raWVzIjoiIiwiZHJtX2tleSI6IjA5MWRjODBiMGE2ZDMzODA5NGFjNTgwOWE0NTBkMzdjOmEyNzdmNjUxOWIzYmQ5NjI0MTlmYjgxZWZmNGQwZjQxIiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552777135171.png" />
+        <div class="channel-title">TRAVEL</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDEzMjMxIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIyMjJmMThiODc5YTMzZGFjODExMzBjNTJlNmJiNjAyYzpkMmY5Y2Q2NzdkOWJhMjY3ZDg1YThjYTAyYjA2NDlhMyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552803195751.png" />
+        <div class="channel-title">الجزيرة</div>
+      </div>
+    </a>
+    
+        <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDEzMjMyIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiI2NmI1NGNkNzYzZWIzY2IyYjgxNDhjNGNkZGY2ODgxZDo1OTIzMzI1ODE1Mzg0ZTM4MzNmODNkNmVmNzhjN2ZjNSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552803195751.png" />
+        <div class="channel-title">الإنجليزية</div>
+      </div>
+    </a>
+    
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDEzMjMzIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJlZWNjM2Q3NjlmMGQzOTM4YTc4OTcxZTY0NTZkODBjOTo3N2U3MTU2NGJjMTIyNDVhMTI1OWE1YmRiN2YyYWFhYiIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552803195751.png" />
+        <div class="channel-title">الجزيرة مباشر</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDEzMjM0IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIzNmYzN2QxMGExMTkzODJmOTc4ZDA1YTIwODhlMmMzNDphM2Y4YTg4YmY4MzQyNTgwYmY0MjkyYjU5NGFlM2JmMCIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552803195751.png" />
+        <div class="channel-title">الوثائقية</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiLYs9mK2LHZgdixIDEiLCJ1cmxfY2hhbm5lbCI6Imh0dHBzOi8vYWtvbW92LmNvbS9ha29fYWRtaW4vY29kL2NoYW5uZWwucGhwP2lkPTUwMDY3MDgiLCJ1c2VyQWdlbnQiOiIiLCJyZWZlcmVyIjoiIiwicGxheWVyIjoiMTIiLCJjb29raWVzIjoiIiwiZHJtX2tleSI6IjkzYjAzMDIxZDZmODMxN2NiNDdiY2YzMzVjMjk2NDUzOjViMGVhNDZkYjM1ZTEzN2E5MzZkMzE2ODUwMzFiOGUyIiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/17555282577261.png" />
+        <div class="channel-title">DISNEY</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiLYs9mK2LHZgdixIDEiLCJ1cmxfY2hhbm5lbCI6Imh0dHBzOi8vYWtvbW92LmNvbS9ha29fYWRtaW4vY29kL2NoYW5uZWwucGhwP2lkPTUwMDY3MDciLCJ1c2VyQWdlbnQiOiIiLCJyZWZlcmVyIjoiIiwicGxheWVyIjoiMTIiLCJjb29raWVzIjoiIiwiZHJtX2tleSI6IjRlMWE3ZjNkYjE2MDNhMzk4OGY4ZWI3YjAyOGQ4YjQ1OjZkZTQwYWE0YTAxNGJhMzM0MGZiZTAxOGM1NWQ0NDJjIiwib3JpZ2luIjoiIn1d#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552845589211.png" />
+        <div class="channel-title">DISNEY JR.</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9UQ05cL1RDTi5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiODQ0MmVhOGRhOTFlMWQwZjM5MjUxNWFkYzY4MGE0ZjU6NGU5YjkwYWMyYzI2Y2IwOGNkMzQwMDVlMDhlY2YwNWMiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552960707121.jpg" />
+        <div class="channel-title">CARTOON</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2FrbS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9DTkFcL0NOQS5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiZWNlN2JiYzY4M2ViMzVkMWU2YjNlMzJjY2NiZDhmYjA6ZjcyYmQ2ZWEyNmUyNDM1MjRkNTg5OTNiNTgxMjIzMTMiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175552976383041.jpg" />
+        <div class="channel-title">CN ARABIC</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Zhc3RseS1saXZlLmNkbi5pbnRpZ3JhbC1vdHQubmV0XC9CT01cL0JPTS5pc21sXC9tYW5pZmVzdC5tcGQiLCJjb29raWVzIjoiIiwidXNlckFnZW50IjoiIiwicmVmZXJlciI6IiIsInBsYXllciI6IjIiLCJkcm1fa2V5IjoiMjgwMmYzZjBlNDUzOGU0ZTZiOTA4NWMxNzljMTVkY2U6NWFmYmQ5NWJiODUzY2MyYzEwNGUzYjk2MGQ1MWRlZmUiLCJvcmlnaW4iOiIifV0=#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://up6.cc/2025/08/175553009912921.png" />
+        <div class="channel-title">CARTOONITO</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjI3IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJjNjU0NDUxMWUxNTUzYWQ1YjMxMDRhNzIyMzQ3OGVhYjoyNGQwZDlmN2RmNWNiMTAxOTNkMThiYTYyNzIzMzJjYyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://www.bein.com/ar/wp-content/uploads/sites/4/2020/06/Bara3em-1.png" />
+        <div class="channel-title">براعم</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjI2IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiIwYWFjOGY3ZGQ4YWQzMDhkYTkwYTlhZDE2YTM5Y2RkMjpiMjc0ZjE2ZjI0ZDA1M2FlYTAxYWI1OTkwMDNhMmE2OSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2020/06/Jeem-HD-1-01.png" />
+        <div class="channel-title">JEEM</div>
+      </div>
+    </a>
+    
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjI4IiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJiZjcxZDNiNDkzM2UzYzRlYjA0YTllMDg5MzE5ZjM0ZTphMzA0OTI2ODhkYWZjMDZjN2I4YmQ1NzVlNGRjZTMyMSIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://www.bein.com/ar/wp-content/uploads/sites/4/2020/06/beJUNIOR.png" />
+        <div class="channel-title">be JUNIOR</div>
+      </div>
+    </a>
+    
+    <a href="intent://ako_player_exoW3sibmFtZV9zZXJ2ZXIiOiJcdTA2MzNcdTA2NGFcdTA2MzFcdTA2NDFcdTA2MzEgMSIsInVybF9jaGFubmVsIjoiaHR0cHM6XC9cL2Frb21vdi5jb21cL2Frb19hZG1pblwvY29kXC9jaGFubmVsLnBocD9pZD01MDAzMjMzIiwiY29va2llcyI6IiIsInVzZXJBZ2VudCI6IiIsInJlZmVyZXIiOiIiLCJwbGF5ZXIiOiIxMiIsImRybV9rZXkiOiJjM2EzODQ4ZGM5M2YzNDEwOWYxODBjYWNmNmVlYjBmNjo5ZWYwZGIwMjkyOTA5NmZlYmFlMmEzODQ5MjcyNzkwNyIsIm9yaWdpbiI6IiJ9XQ==#Intent;scheme=xmtv;package=com.mv.player;end" style="text-decoration: none;" tabindex="0">
+      <div class="channel-box">
+        <img src="https://assets.bein.com/mena/sites/4/2021/11/Baby-TV-2.png" />
+        <div class="channel-title">BABY TV</div>
+      </div>
+    </a>
+  </div>
+
+
+<script>
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+
+
+    const container = document.querySelector('.grid-container');
+
+
+
+    const items = Array.from(container.querySelectorAll('a'));
+
+
+
+    const refreshBtn = document.getElementById('refreshBtn');
+
+
+
+    const backBtn = document.getElementById('backBtn');
+
+
+
+    const firstCard = document.getElementById('firstCard');
+
+
+
+
+
+
+
+    // دالة للتركيز التلقائي على البطاقة الأولى
+
+
+
+    function setInitialFocus() {
+
+
+
+      if (!firstCard) return;
+
+
+
+      
+
+
+
+      // إضافة كلاس التركيز الأولي
+
+
+
+      firstCard.classList.add('initial-focus');
+
+
+
+      
+
+
+
+      // التركيز على العنصر الأول
+
+
+
+      firstCard.focus();
+
+
+
+      
+
+
+
+      // التمرير إلى العنصر
+
+
+
+      firstCard.scrollIntoView({block: 'center', behavior: 'auto'});
+
+
+
+    }
+
+
+
+
+
+
+
+    // استدعاء التركيز التلقائي عند تحميل الصفحة
+
+
+
+    setTimeout(setInitialFocus, 100);
+
+
+
+
+
+
+
+    // إزالة التركيز التلقائي عند التركيز على أي عنصر آخر
+
+
+
+    items.forEach(item => {
+
+
+
+      item.addEventListener('focus', function() {
+
+
+
+        // إذا كان العنصر الذي حصل على التركيز ليس البطاقة الأولى
+
+
+
+        if (this !== firstCard) {
+
+
+
+          // إزالة كلاس التركيز الأولي من البطاقة الأولى
+
+
+
+          firstCard.classList.remove('initial-focus');
+
+
+
+        }
+
+
+
+      });
+
+
+
+    });
+
+
+
+
+
+
+
+    function getGridColumnCount() {
+
+
+
+      const style = window.getComputedStyle(container);
+
+
+
+      return style.getPropertyValue('grid-template-columns').split(' ').length;
+
+
+
+    }
+
+
+
+
+
+
+
+    function getFocusedIndex() {
+
+
+
+      return items.findIndex(item => item === document.activeElement);
+
+
+
+    }
+
+
+
+
+
+
+
+    function moveFocus(direction) {
+
+
+
+      const cols = getGridColumnCount();
+
+
+
+      let idx = getFocusedIndex();
+
+
+
+      if (idx === -1) {
+
+
+
+        items[0].focus();
+
+
+
+        return;
+
+
+
+      }
+
+
+
+
+
+
+
+      let newIndex = idx;
+
+
+
+
+
+
+
+      switch(direction) {
+
+
+
+        case 'left':
+
+
+
+          if (idx > 0) newIndex = idx - 1;
+
+
+
+          break;
+
+
+
+        case 'right':
+
+
+
+          if (idx < items.length - 1) newIndex = idx + 1;
+
+
+
+          break;
+
+
+
+        case 'up':
+
+
+
+          if (idx - cols >= 0) newIndex = idx - cols;
+
+
+
+          break;
+
+
+
+        case 'down':
+
+
+
+          if (idx + cols < items.length) newIndex = idx + cols;
+
+
+
+          break;
+
+
+
+      }
+
+
+
+
+
+
+
+      if (newIndex !== idx) {
+
+
+
+        items[newIndex].focus();
+
+
+
+        items[newIndex].scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    window.addEventListener('keydown', e => {
+
+
+
+      switch(e.key) {
+
+
+
+        case 'ArrowLeft':
+
+
+
+          e.preventDefault();
+
+
+
+          moveFocus('left');
+
+
+
+          break;
+
+
+
+        case 'ArrowRight':
+
+
+
+          e.preventDefault();
+
+
+
+          moveFocus('right');
+
+
+
+          break;
+
+
+
+        case 'ArrowUp':
+
+
+
+          e.preventDefault();
+
+
+
+          moveFocus('up');
+
+
+
+          break;
+
+
+
+        case 'ArrowDown':
+
+
+
+          e.preventDefault();
+
+
+
+          moveFocus('down');
+
+
+
+          break;
+
+
+
+        case 'Enter':
+
+
+
+        case 'NumpadEnter':
+
+
+
+        case 'OK':
+
+
+
+          e.preventDefault();
+
+
+
+          if (document.activeElement && document.activeElement.click) {
+
+
+
+            document.activeElement.click();
+
+
+
+          }
+
+
+
+          break;
+
+
+
+        case 'Backspace':
+
+
+
+        case 'Escape':
+
+
+
+          backBtn.click();
+
+
+
+          break;
+
+
+
+      }
+
+
+
+    });
+
+
+
+
+
+
+
+    refreshBtn.addEventListener('click', function() {
+
+
+
+      const icon = this.querySelector('i');
+
+
+
+      icon.classList.add('rotate');
+
+
+
+      
+
+
+
+      setTimeout(() => {
+
+
+
+        icon.classList.remove('rotate');
+
+
+
+        window.location.reload();
+
+
+
+      }, 600);
+
+
+
+    });
+
+
+
+
+
+
+
+    // تعديل زر الرجوع ليتجه إلى صفحة معينة (main.html كمثال)
+
+
+
+    backBtn.addEventListener('click', function() {
+
+
+
+      window.location.href = 'go:todst'; // يمكنك تغيير 'main.html' إلى الصفحة التي تريد التوجيه إليها
+
+
+
+    });
+
+
+
+  });
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>
